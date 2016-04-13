@@ -1,0 +1,10 @@
+Buildfile: C:\Projects\Widget Development\OpenTab\test\deployment\build_core.xml
+
+deploy:
+    [unzip] Expanding: C:\Program Files\Mendix\5.19.0\modeler\deployment.mxz into C:\Projects\Widget Development\OpenTab\test\deployment
+
+BUILD SUCCESSFUL
+Total time: 0 seconds
+
+
+

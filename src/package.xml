@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<package xmlns="http://www.mendix.com/package/1.0/">
+    <clientModule name="OpenTab" version="1.0.0" xmlns="http://www.mendix.com/clientModule/1.0/">
+        <widgetFiles>
+            <widgetFile path="OpenTab/OpenTab.xml" />
+            <widgetFile path="OpenTab/OpenTabContext.xml" />
+        </widgetFiles>
+        <files>
+            <file path="OpenTab/widget/OpenTab.js" />
+            <file path="OpenTab/widget/OpenTabContext.js" />
+        </files>
+    </clientModule>
+</package>

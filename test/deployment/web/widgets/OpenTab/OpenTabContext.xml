@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<widget id="OpenTab.widget.OpenTabContext" needsEntityContext="true" xmlns="http://www.mendix.com/widget/1.0/">
+    <name>OpenTab (context)</name>
+    <description>Automatically open a tab within a tab container based on the tab name or a microflow.</description>
+
+    <icon />
+
+    <properties>
+        <property key="datasource" type="enumeration" defaultValue="tabName">
+            <caption>Data source</caption>
+            <category>Behavior</category>
+            <description>How to determine which tab to open: using the (static) tab name or by retrieving the tab name from a microflow.</description>
+            <enumerationValues>
+                <enumerationValue key="tabName">Based on (static) tab name</enumerationValue>                
+                <enumerationValue key="microflow">Based on microflow</enumerationValue>
+            </enumerationValues>
+        </property>
+        <property key="tabName" type="string" required="false" defaultValue="tabPage2">
+            <caption>Tab name</caption>
+            <category>Behavior</category>
+            <description>The name of the tab to open.</description>
+        </property>
+        <property key="mfDataSource" type="microflow" required="false" defaultValue="">
+            <caption>Microflow</caption>
+            <category>Behavior</category>
+            <description>The microflow to determine which tab to open.</description>
+            <returnType type="String" />
+        </property>
+    </properties>
+</widget>
+

@@ -1,0 +1,75 @@
+{
+  "RuntimeVersion": "5.19.0",
+  "ProjectID": "db768636-4374-4eaa-8951-722cc8293e07",
+  "ProjectName": "Test",
+  "ModelVersion": "unversioned",
+  "Description": "",
+  "AdminUser": "MxAdmin",
+  "Roles": {
+    "8dd52bfa-6d7e-453b-b506-303c0a3d9567": {
+      "Name": "Administrator",
+      "ManageableRoles": [
+        "8dd52bfa-6d7e-453b-b506-303c0a3d9567",
+        "53f5d6fa-6da9-4a71-b011-454ec052cce8"
+      ]
+    },
+    "53f5d6fa-6da9-4a71-b011-454ec052cce8": {
+      "Name": "User"
+    }
+  },
+  "AdminRole": "8dd52bfa-6d7e-453b-b506-303c0a3d9567",
+  "Constants": [],
+  "ScheduledEvents": [],
+  "Configuration": {
+    "SourceDatabaseType": "HSQLDB",
+    "SourceDatabaseName": "default",
+    "SourceBuiltInDatabasePath": "model/sampledata/data/database"
+  },
+  "RequestHandlers": [
+    {
+      "Name": "/api/",
+      "DefaultEnabled": true,
+      "MatchExactly": false
+    },
+    {
+      "Name": "/link/",
+      "DefaultEnabled": true,
+      "MatchExactly": false
+    },
+    {
+      "Name": "/ws/",
+      "DefaultEnabled": false,
+      "MatchExactly": false
+    },
+    {
+      "Name": "/ws-doc/",
+      "DefaultEnabled": false,
+      "MatchExactly": false
+    },
+    {
+      "Name": "/rest/",
+      "DefaultEnabled": false,
+      "MatchExactly": false
+    },
+    {
+      "Name": "/rest-doc/",
+      "DefaultEnabled": false,
+      "MatchExactly": false
+    },
+    {
+      "Name": "/odata/",
+      "DefaultEnabled": false,
+      "MatchExactly": false
+    },
+    {
+      "Name": "/odata-doc/",
+      "DefaultEnabled": false,
+      "MatchExactly": false
+    },
+    {
+      "Name": "/api-doc/",
+      "DefaultEnabled": true,
+      "MatchExactly": false
+    }
+  ]
+}
