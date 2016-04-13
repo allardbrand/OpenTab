@@ -1,1 +1,0 @@
-﻿define(["OpenTab/widget/OpenTab", "OpenTab/widget/OpenTabContext"], {});
