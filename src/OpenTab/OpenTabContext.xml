@@ -26,6 +26,11 @@
             <description>The microflow to determine which tab to open.</description>
             <returnType type="String" />
         </property>
+        <property key="preventRefresh" type="boolean" required="true" defaultValue="false">
+            <caption>Prevent refresh</caption>
+            <category>Behavior</category>
+            <description>Prevent re-opening the tab when the context object is refreshed.</description>
+        </property>
     </properties>
 </widget>
 

@@ -4,9 +4,9 @@
     ========================
 
     @file      : OpenTab.js
-    @version   : 1.0.0
+    @version   : 1.1.0
     @author    : Allard Brand
-    @date      : 2016-04-13
+    @date      : 2016-06-23
     @copyright : FlowFabric (c) 2016
     @license   : Apache 2
 
@@ -114,7 +114,7 @@ define([
             logger.debug(this.id + "._updateRendering");
 
             // Find surrounding tab container
-            var tabContainer = this.domNode.closest('.mx-tabcontainer');
+            var tabContainer = dojo.query(this.domNode).closest('.mx-tabcontainer')[0];
 
             if (tabContainer != null) {
                 logger.debug(this.id + ": surrounding tab container: " + tabContainer.id);
@@ -149,9 +149,6 @@ define([
             } else {
                 logger.debug(this.id + ": no surrounding tab container found");
             }
-
-            // Important to clear all validations!
-            this._clearValidations();
         },
 
         _openTab: function(tabName, tabContainer) {
@@ -164,39 +161,6 @@ define([
                 logger.debug(this.id + ": open tab ");
                 dojoQuery[dojoQuery.length - 1].click();
             }
-        },
-
-        // Handle validations.
-        _handleValidation: function(validations) {
-            logger.debug(this.id + "._handleValidation");
-            this._clearValidations();
-        },
-
-        // Clear validations.
-        _clearValidations: function() {
-            logger.debug(this.id + "._clearValidations");
-            dojoConstruct.destroy(this._alertDiv);
-            this._alertDiv = null;
-        },
-
-        // Show an error message.
-        _showError: function(message) {
-            logger.debug(this.id + "._showError");
-            if (this._alertDiv !== null) {
-                dojoHtml.set(this._alertDiv, message);
-                return true;
-            }
-            this._alertDiv = dojoConstruct.create("div", {
-                "class": "alert alert-danger",
-                "innerHTML": message
-            });
-            dojoConstruct.place(this.domNode, this._alertDiv);
-        },
-
-        // Add a validation.
-        _addValidation: function(message) {
-            logger.debug(this.id + "._addValidation");
-            this._showError(message);
         },
 
         // Reset subscriptions.
@@ -219,13 +183,7 @@ define([
                     })
                 });
 
-                var validationHandle = this.subscribe({
-                    guid: this._contextObj.getGuid(),
-                    val: true,
-                    callback: dojoLang.hitch(this, this._handleValidation)
-                });
-
-                this._handles = [ objectHandle, validationHandle ];
+                this._handles = [ objectHandle ];
             }
         }
     });

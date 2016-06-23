@@ -11,7 +11,6 @@ Automatically open a tab within a tab container based on the tab name or a micro
 *	Show a tab based on a tab name which is retrieved from a microflow data source (either context based or without any context)
 
 ## Configuration
-1.	Create a tab container widget.
-2.	Add the OpenTab widget within the first (!) tab page of your tab container
-3.	Configure the OpenTab widget to either use a static tab name or a microflow as data source
-4.	In case of a microflow, make sure the microflow returns a valid tab name to open
+1.	Add the OpenTab widget within the default (!) tab page of your tab container
+2.	Configure the OpenTab widget to either use a static tab name or a microflow as data source
+3.	In case of a microflow, make sure the microflow returns a valid tab name to open

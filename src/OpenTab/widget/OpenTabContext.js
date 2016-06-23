@@ -4,9 +4,9 @@
     ========================
 
     @file      : OpenTabContext.js
-    @version   : 1.0.0
+    @version   : 1.1.0
     @author    : Allard Brand
-    @date      : 2016-04-13
+    @date      : 2016-06-23
     @copyright : FlowFabric (c) 2016
     @license   : Apache 2
 
@@ -43,6 +43,7 @@ define([
         mfDataSource: "",
         datasource: "",
         tabName: "",
+        preventRefresh: true,
 
         // Internal variables. Non-primitives created in the prototype are shared between all widget instances.
         _handles: null,
@@ -114,7 +115,7 @@ define([
             logger.debug(this.id + "._updateRendering");
 
             // Find surrounding tab container
-            var tabContainer = this.domNode.closest('.mx-tabcontainer');
+            var tabContainer = dojo.query(this.domNode).closest('.mx-tabcontainer')[0];
 
             if (tabContainer != null) {
                 logger.debug(this.id + ": surrounding tab container: " + tabContainer.id);
@@ -145,17 +146,14 @@ define([
                 } else {
                     if (this.tabName !== "") {
                         // Open tab using the provided tab name
-                        this._openTab(this.tabName, tabContainer)
+                        this._openTab(this.tabName, tabContainer);
                     } else {
-                        logger.debug(this.id + ": no valid tab name provided")
+                        logger.debug(this.id + ": no valid tab name provided");
                     }
                 }
             } else {
                 logger.debug(this.id + ": no surrounding tab container found");
             }
-
-            // Important to clear all validations!
-            this._clearValidations();
         },
 
         _openTab: function(tabName, tabContainer) {
@@ -170,39 +168,6 @@ define([
             }
         },
 
-        // Handle validations.
-        _handleValidation: function(validations) {
-            logger.debug(this.id + "._handleValidation");
-            this._clearValidations();
-        },
-
-        // Clear validations.
-        _clearValidations: function() {
-            logger.debug(this.id + "._clearValidations");
-            dojoConstruct.destroy(this._alertDiv);
-            this._alertDiv = null;
-        },
-
-        // Show an error message.
-        _showError: function(message) {
-            logger.debug(this.id + "._showError");
-            if (this._alertDiv !== null) {
-                dojoHtml.set(this._alertDiv, message);
-                return true;
-            }
-            this._alertDiv = dojoConstruct.create("div", {
-                "class": "alert alert-danger",
-                "innerHTML": message
-            });
-            dojoConstruct.place(this.domNode, this._alertDiv);
-        },
-
-        // Add a validation.
-        _addValidation: function(message) {
-            logger.debug(this.id + "._addValidation");
-            this._showError(message);
-        },
-
         // Reset subscriptions.
         _resetSubscriptions: function() {
             logger.debug(this.id + "._resetSubscriptions");
@@ -215,7 +180,7 @@ define([
             }
 
             // When a mendix object exists create subscribtions.
-            if (this._contextObj) {
+            if (this._contextObj && !this.preventRefresh) {
                 var objectHandle = this.subscribe({
                     guid: this._contextObj.getGuid(),
                     callback: dojoLang.hitch(this, function(guid) {
@@ -223,13 +188,7 @@ define([
                     })
                 });
 
-                var validationHandle = this.subscribe({
-                    guid: this._contextObj.getGuid(),
-                    val: true,
-                    callback: dojoLang.hitch(this, this._handleValidation)
-                });
-
-                this._handles = [ objectHandle, validationHandle ];
+                this._handles = [ objectHandle ];
             }
         }
     });
